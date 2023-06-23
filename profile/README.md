@@ -1,4 +1,4 @@
-<center> ## Hi there 👋<center>
+## Hi there 👋
 ![image](https://github.com/Red-team-401d6/.github/assets/123131865/3a1972d2-7961-4c79-beea-be06b2dc1802)
 
 
