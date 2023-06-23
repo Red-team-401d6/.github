@@ -257,5 +257,6 @@ Run the exploit by typing exploit.
 ### 3.5. Reporting & Recomendations
 
 Finally, this is where will  prepare a report detailing your findings, including the vulnerabilities detected and the potential impact. The report might also include recommendations for mitigating the detected vulnerabilities.
+
 **Defending against SQL injection (SQLi) attacks** requires implementing a set of best practices. These include **using prepared statements or parameterized queries**, **validating and sanitizing user inputs**, **following the principle of least privilege**, **whitelisting input filtering**, **avoiding dynamic SQL queries**, **practicing secure coding**, **utilizing a web application firewall**, **conducting regular security audits and testing**, **keeping software and libraries updated**, and **promoting security awareness and training**. By adhering to these practices, organizations can significantly reduce the risk of SQL injection vulnerabilities and bolster the security of their web applications.
 
