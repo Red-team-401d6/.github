@@ -260,3 +260,32 @@ Finally, this is where will  prepare a report detailing your findings, including
 
 **Defending against SQL injection (SQLi) attacks** for host **10.0.0.175** requires implementing a set of best practices. These include **using prepared statements or parameterized queries**, **validating and sanitizing user inputs**, **following the principle of least privilege**, **whitelisting input filtering**, **avoiding dynamic SQL queries**, **practicing secure coding**, **utilizing a web application firewall**, **conducting regular security audits and testing**, **keeping software and libraries updated**, and **promoting security awareness and training**. By adhering to these practices, organizations can significantly reduce the risk of SQL injection vulnerabilities and bolster the security of their web applications.
 
+### IP: 10.0.0.126 Remediation Suggestions
+
+Addressing vulnerabilities on ports 445 and 3389 requires the implementation of specific measures to effectively mitigate potential risks. Here are recommended remedies for each port:
+
+#### Port 445 (SMB):
+
+- Disable SMB version 1: It is crucial to disable SMBv1 as it is an outdated and vulnerable protocol. Ensuring that SMBv1 is deactivated on all systems is imperative to enhance security.
+
+- Implement robust password policies: Enforce the use of strong, complex passwords to fortify defenses against successful brute force attacks. Encouraging users to employ passwords that combine uppercase and lowercase letters, numbers, and special characters is essential.
+
+- Enable account lockout policies: Implementing account lockout policies that temporarily suspend user accounts after a specific number of failed login attempts adds an extra layer of protection against brute force attacks. This measure helps mitigate the risk of unauthorized access.
+
+- Apply regular security patches: Consistently updating systems and applications with the latest security patches and updates is crucial. By doing so, known vulnerabilities can be promptly addressed, reducing the likelihood of exploitation.
+
+- Implement network segmentation: Dividing the network into separate segments and restricting SMB traffic between them is a recommended practice. This segmentation limits the potential lateral movement within the network, thus containing the impact of a successful attack.
+
+#### Port 3389 (RDP):
+
+- Change the default RDP port: Modifying the default port for RDP from 3389 to a less predictable port enhances security by making it harder for attackers to identify and target the RDP service.
+
+- Enforce strong passwords and account lockout policies: Requiring strong passwords for RDP accounts, incorporating a combination of diverse character types, and implementing account lockout policies act as deterrents against brute force attacks.
+
+- Enable network-level authentication (NLA): Activating network-level authentication provides an additional layer of security by requiring users to authenticate before establishing an RDP session. This safeguard reduces the risk of unauthorized access.
+
+- Implement two-factor authentication (2FA): Enabling 2FA for RDP adds an extra layer of authentication, making it significantly more challenging for attackers to gain unauthorized access. The combination of something the user knows (password) with something the user possesses (such as a token or mobile device) enhances security.
+
+- Implement an RDP gateway: Deploying an RDP gateway or Remote Desktop Gateway (RD Gateway) allows for centralized control and access management for RDP sessions. This implementation provides an additional layer of security by effectively controlling and monitoring RDP connections.
+
+##### In addition to these measures, adherence to general security best practices is vital. This includes regularly updating and patching systems, utilizing firewall rules to restrict access to necessary ports, deploying intrusion detection and prevention systems, and conducting frequent security audits and assessments. By following these practices, organizations can enhance their overall security posture and minimize the risk of exploitation.
