@@ -93,9 +93,9 @@ After the hosts, ports, services, and operating systems have been identified, yo
 ### IP 10.0.0.175
 | Port  | Service          | Vulnerability                                                        | Attack Method                                                                                        |
 |-------|------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| 22    | ssh              |                                                                      |                                                                                                      |
-| 80    | http             | Misconfiguration of web application, SQL injection                   |                                                                                                      |
-| 8089  | unknownkali      |                                                                      |                                                                                                      |
+| 22    | ssh              |      is an open port, that is vulnerable to bruteforce attack        |     Brute force attack, using Hydra, Metasploit                                                                                                 |
+| 80    | http             | Misconfiguration of web application, SQL injection                   | SQLI injection using burp suite and fuzzing technique using payload, dirbuster, sqlmap                                      |
+| 8089  | ssl/http         |   is used for splunk to splunk and spluk web browing acitivy         | burp suite and metasploit                                                                                                      |
 
 ### IP 10.0.0.197
 | Port  | Service          | Vulnerability                                                        | Attack Method                                                                                        |
@@ -191,7 +191,65 @@ This command allowed my RDP access to the host itself. rdesktop -u administrator
 Was looking into running an ARPspoof to get information. However, that never came to fruition.
 
 ### Host 10.0.0.175 Process Documentation
+After an extensive reconnaissance, we found out that the following ports are opened:
+**Port 22**, which is been used for SSH, running an  Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)
+**Port  80**, which is used for http, running a Apache http 2.4.41 ((Ubuntu))
+**Port 8089**, which is used for ssl/http, running a Splunkd http
+Vulnerabilities that can be exploited
 
+To exploit these, I consider the following approaches:using a bruteforce attack, to gain access to the target host
+
+SSH (OpenSSH 8.2p1 Ubuntu 4ubuntu0.2): I attempted to brute force the SSH login using a tool like Hydra, John the Ripper, metasploits .  However I could not gain initial access to this machine.
+
+**Hydra**: I used this command, hydra -l /home/kali/Downloads/SecLists/Usernames/top-usernames-shortlist.txt -P /home/kali/Downloads/SecLists/Passwords/500-worst-passwords.txt 10.0.0.175 ssh -t 4
+
+**Metasploits**: using the following command:Here's an example of how you might use Metasploit to gain access to a system via SSH:
+Start Metasploit: First, you need to launch Metasploit. You can do this by typing msfconsole in your terminal and pressing enter. Wait for Metasploit to load up.
+
+Use SSH auxiliary scanner: Metasploit contains an auxiliary scanner for SSH. You can use it by typing use auxiliary/scanner/ssh/ssh_version.
+
+Set the RHOSTS: Now you need to tell Metasploit which target or targets you want to scan. You can do this with the set RHOSTS command followed by the target IP address or addresses. For example, set RHOSTS 10.0.0.175.
+
+Run the scanner: Now that everything is set up, you can run the scanner with the run or exploit command. 
+
+**HTTP 80 (Apache http 2.4.41)**: You could look for web vulnerabilities. Run a tool like  Burp suite, dirbuster, sqlmap, to find potential vulnerabilities in the web application running on port 80. In addition, you can manually inspect the website for misconfigurations, insecure direct object references, SQL injection, etc.
+**Dirbuster**: This are my findings:
+
+**SQLMAP**: This are my findings sqlmap -u "http://192.168.1.250/?p=1&forumaction=search" --dbs
+
+Ran Tamper set: sqlmap -u "http://10.0.0.175/?p=1&forumaction=search" '--tamper=space2comment' . This are the result
+**Result**:GET parameter 'forumaction' does not seem to be injectable
+
+**WFUZZ** :Using this command, wfuzz -c -z file,/home/kali/Downloads/SecLists/Usernames/top-usernames-shortlist.txt --hc 404 http://10.0.0.175/FUZZ
+**Result**: I was not able to inject anything.
+**Overall Result**: I was unable to gain access using brute force attack.
+
+
+**Splunkd http (Port 8089)**: Depending on the version of Splunk being used, there may be possible exploits. This port is typically used for Splunk-to-Splunk and Splunk web browsing activity. Splunk's REST API also listens on this port, and if poorly configured, may be vulnerable to attacks.
+
+For each of these, I perform more in-depth scanning and analysis to identify potential vulnerabilities. Tools such as Burp suite, and metasploit  are helpful in identifying known vulnerabilities for the services detected.
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 34.57 seconds
+
+
+I used Burp suit for injection on port 80: I try I try to use a authentication bypass to bypass the website authentication process,it was not successful, which is shown with the first screenshot below:
+
+**Result**: .I was  able to confirmed a true positive with an SQLI injection, using  Fuzzing technique(White Box Fuzzing), I was able to found anomaly as a result of injecting payloads to  the search button after I created a user account on the website 
+
+I also try to attack port 8089 which shows they are running  Splunk server on it, it was not  a success either, I used metasploit : 
+Open Metasploit by typing msfconsole in the terminal.
+
+You can search for available Splunk exploits by typing search splunk.
+
+If an exploit for your specific version of Splunk is available, you can select it by typing use followed by the exploit name.
+
+Set the target by typing set RHOSTS target_ip_address.
+
+Set any other required options.
+
+Run the exploit by typing exploit.
+**Result**: Unable to get the session cookies.
 
 ### Host 10.0.0.197 Process Documentation
 
@@ -199,3 +257,5 @@ Was looking into running an ARPspoof to get information. However, that never cam
 ### 3.5. Reporting & Recomendations
 
 Finally, this is where will  prepare a report detailing your findings, including the vulnerabilities detected and the potential impact. The report might also include recommendations for mitigating the detected vulnerabilities.
+**Defending against SQL injection (SQLi) attacks** requires implementing a set of best practices. These include **using prepared statements or parameterized queries**, **validating and sanitizing user inputs**, **following the principle of least privilege**, **whitelisting input filtering**, **avoiding dynamic SQL queries**, **practicing secure coding**, **utilizing a web application firewall**, **conducting regular security audits and testing**, **keeping software and libraries updated**, and **promoting security awareness and training**. By adhering to these practices, organizations can significantly reduce the risk of SQL injection vulnerabilities and bolster the security of their web applications.
+
