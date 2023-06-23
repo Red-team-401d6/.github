@@ -1,5 +1,4 @@
 ## Hi there 👋
-![Red-Ish Logo](radish-flat-icon-colorful-logo-vector-16961539)
 
 
 <!--
