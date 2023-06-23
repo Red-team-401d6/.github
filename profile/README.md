@@ -260,7 +260,9 @@ Finally, this is where will  prepare a report detailing your findings, including
 
 **Defending against SQL injection (SQLi) attacks** for host **10.0.0.175** requires implementing a set of best practices. These include **using prepared statements or parameterized queries**, **validating and sanitizing user inputs**, **following the principle of least privilege**, **whitelisting input filtering**, **avoiding dynamic SQL queries**, **practicing secure coding**, **utilizing a web application firewall**, **conducting regular security audits and testing**, **keeping software and libraries updated**, and **promoting security awareness and training**. By adhering to these practices, organizations can significantly reduce the risk of SQL injection vulnerabilities and bolster the security of their web applications.
 
-### IP: 10.0.0.126 Remediation Suggestions
+### IP: 10.0.0.126 Report and Remediation Suggestions
+
+#### Due to the vulnerable ports and lack of heavy credential security, this IP was highly susceptable to a Brute-Force attack as well as left little resistance to privilege escalation and access persistence.
 
 Addressing vulnerabilities on ports 445 and 3389 requires the implementation of specific measures to effectively mitigate potential risks. Here are recommended remedies for each port:
 
