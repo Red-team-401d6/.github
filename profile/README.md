@@ -1,6 +1,6 @@
 ## Hi there 👋
-![Red-Ish Logo](![radish-flat-icon-colorful-logo-vector-16961539](https://github.com/Red-team-401d6/.github/assets/123131865/c31b12b0-712c-4bd0-a4cc-aa443587993c)
-)
+![Red-Ish Logo](radish-flat-icon-colorful-logo-vector-16961539)
+
 
 <!--
 
