@@ -1,5 +1,5 @@
 ## Hi there 👋
-![radish-flat-icon-colorful-logo-vector-16961539](https://github.com/Red-team-401d6/.github/assets/123131865/1b1f3ff4-9f53-4fe1-a006-ee86600ab24b)
+
 
 
 
