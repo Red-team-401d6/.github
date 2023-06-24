@@ -254,11 +254,32 @@ Run the exploit by typing exploit.
 ### Host 10.0.0.197 Process Documentation
 
 
+### Host 10.0.0.206 Process Documentation
+
 ### 3.5. Reporting & Recomendations
 
 Finally, this is where will  prepare a report detailing your findings, including the vulnerabilities detected and the potential impact. The report might also include recommendations for mitigating the detected vulnerabilities.
 
-**Defending against SQL injection (SQLi) attacks** for host **10.0.0.175** requires implementing a set of best practices. These include **using prepared statements or parameterized queries**, **validating and sanitizing user inputs**, **following the principle of least privilege**, **whitelisting input filtering**, **avoiding dynamic SQL queries**, **practicing secure coding**, **utilizing a web application firewall**, **conducting regular security audits and testing**, **keeping software and libraries updated**, and **promoting security awareness and training**. By adhering to these practices, organizations can significantly reduce the risk of SQL injection vulnerabilities and bolster the security of their web applications.
+### IP: 10.0.0.74
+
+### IP: 10.0.0.82
+***Port 21: (Open ftp)*** 
+This should be set to only recieve connections from approved ip locations, as that will help to defend against attacks when an attacker has aquired log in credentials.  
+
+***Port 80:(Open http)*** 
+With port 80 being completly open you're vulnerable to DOS attacks or Buffer overflow attacks.
+
+***Port 3389: (Open RDP)***
+This should be set to only recieve connections from approved ip locations, as that will help to defend against attacks when an attacker has aquired log in credentials.  I gained entrance through this port.
+
+**Remediations:** Filter http traffic through a firewall, Increase the password complexity and length requirements, set ports 21 and 3389 to recieve connections from specific IPs, apply Microsoft security updates to the IIS server.
+
+### IP: 10.0.0.123
+***Port 22: (Open-SSH)***
+should be set to recieve connections from specific IP addresses to prevent breaches when a threatactor has aquired authentication credentials. Should update version of SSH to current version. I utilized this exact vulnerability to gain access to the system after getting my own ssh key into the network file share.
+
+***Port 2049: (nfs)***
+Update to the current nfs patch and set the directory to only be mountable be specific IPs so not just anyone can add to the directory.
 
 ### IP: 10.0.0.126 Report and Remediation Suggestions
 
@@ -266,7 +287,7 @@ Finally, this is where will  prepare a report detailing your findings, including
 
 Addressing vulnerabilities on ports 445 and 3389 requires the implementation of specific measures to effectively mitigate potential risks. Here are recommended remedies for each port:
 
-#### Port 445 (SMB):
+***Port 445 (SMB):***
 
 - Disable SMB version 1: It is crucial to disable SMBv1 as it is an outdated and vulnerable protocol. Ensuring that SMBv1 is deactivated on all systems is imperative to enhance security.
 
@@ -278,7 +299,7 @@ Addressing vulnerabilities on ports 445 and 3389 requires the implementation of 
 
 - Implement network segmentation: Dividing the network into separate segments and restricting SMB traffic between them is a recommended practice. This segmentation limits the potential lateral movement within the network, thus containing the impact of a successful attack.
 
-#### Port 3389 (RDP):
+***Port 3389 (RDP):***
 
 - Change the default RDP port: Modifying the default port for RDP from 3389 to a less predictable port enhances security by making it harder for attackers to identify and target the RDP service.
 
@@ -291,3 +312,10 @@ Addressing vulnerabilities on ports 445 and 3389 requires the implementation of 
 - Implement an RDP gateway: Deploying an RDP gateway or Remote Desktop Gateway (RD Gateway) allows for centralized control and access management for RDP sessions. This implementation provides an additional layer of security by effectively controlling and monitoring RDP connections.
 
 ##### In addition to these measures, adherence to general security best practices is vital. This includes regularly updating and patching systems, utilizing firewall rules to restrict access to necessary ports, deploying intrusion detection and prevention systems, and conducting frequent security audits and assessments. By following these practices, organizations can enhance their overall security posture and minimize the risk of exploitation.
+
+### IP: 10.0.0.175
+**Defending against SQL injection (SQLi) attacks** for host **10.0.0.175** requires implementing a set of best practices. These include **using prepared statements or parameterized queries**, **validating and sanitizing user inputs**, **following the principle of least privilege**, **whitelisting input filtering**, **avoiding dynamic SQL queries**, **practicing secure coding**, **utilizing a web application firewall**, **conducting regular security audits and testing**, **keeping software and libraries updated**, and **promoting security awareness and training**. By adhering to these practices, organizations can significantly reduce the risk of SQL injection vulnerabilities and bolster the security of their web applications.
+
+### IP: 10.0.0.197
+
+### IP: 10.0.0.206
