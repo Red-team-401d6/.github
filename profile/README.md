@@ -129,38 +129,57 @@ Once potential vulnerabilities have been identified, the next step would be to a
 
 ### Host 10.0.0.82 Process Documentation
 First we noticed that ftp was open on port 21 and so was port 3389. 
-With that info we know we need to run Hydra
+With that info we know we need to run Hydra in an effort to get the log in credentials, we also noticed the name of the computer was vagrant so we figured we could try that as the user name as well
 * Hydra:
   Bruteforce Attack.
   Hydra -L path/to/folder-of-usernames -P /path/to/folder-of-passwords 10.0.0.82 ftp
+<img width="599" alt="Hydra 82attack" src="https://github.com/Red-team-401d6/.github/assets/108830695/e975348d-dc24-4e96-a21d-86b4fb8427ba">
 
-Then I was able to use those creds to log into both ftp and through rdp on port 3389
+Then I was able to use those creds to log into ftp on port 21
 
+<img width="244" alt="ftp-connection" src="https://github.com/Red-team-401d6/.github/assets/108830695/8e35492c-5d97-48d9-877d-8325687da6bf">
+
+and rdp on port 3389
+
+<img width="314" alt="rdeskconnect" src="https://github.com/Red-team-401d6/.github/assets/108830695/e7c8ba64-e4fb-417b-a0ad-71c82e9f5531">
 
 
 ### Host 10.0.0.123 Process Documentation
 Through Recon we discovered port 22 was open and nfs was up and running on 2049. With both of these open we decide to see what network file share we have access to
-This indicates the home/peter directory is mountable by anyone on the network. We start by creating a tmp directory to mount the home/peter directory to. 
- then we can mount that home/peter directory to the newly created /tmp/infosec directory
+<img width="234" alt="showmount" src="https://github.com/Red-team-401d6/.github/assets/108830695/ad6846d4-36a3-4680-9150-5815e336752f">
+This indicates the home/peter directory is mountable by anyone on the network. We start by creating a tmp directory to mount the home/peter directory to.
+<img width="228" alt="mkdir" src="https://github.com/Red-team-401d6/.github/assets/108830695/8009c02e-24cf-4153-80fd-37b03d9c033c">
+
+then we can mount that home/peter directory to the newly created /tmp/infosec directory
+
+<img width="434" alt="mount" src="https://github.com/Red-team-401d6/.github/assets/108830695/0f3e35e0-92c9-422d-9069-da82431c34d6">
 
 From here on the file directory that was /tmp/infosec has been changed to /mnt/peter2 as I had to start over and try again.Having created the directory and mounting the target machines nfs directory we can see what all is in there
 
+<img width="510" alt="listpre" src="https://github.com/Red-team-401d6/.github/assets/108830695/6b69a6a2-b606-40c4-bfc2-4bb72e04b938">
+
 After mounting the directory we can create a new group call it peter and associated it with the 1005 group 
+
+<img width="370" alt="gadd" src="https://github.com/Red-team-401d6/.github/assets/108830695/70b7f6ca-e61e-45ee-9755-7461ea7b87d7">
 
 Then we can add the user peter to that group and give him the user id of 1005 
 
+<img width="544" alt="addpet" src="https://github.com/Red-team-401d6/.github/assets/108830695/bd42e444-8a31-4509-b6a2-45239d1013ee">
+
 Now we can see the new group and user in said group
+<img width="540" alt="listpost" src="https://github.com/Red-team-401d6/.github/assets/108830695/c993919d-ace4-4a17-ba1d-ff980ae642f3">
 
 Then we just needed to switch to peter using;
 ‘su peter’
 add a .ssh folder to hold our own ssh key using the following command;
 Mkdir .ssh
 Then we created a new ssh key as peter
+<img width="439" alt="keygen" src="https://github.com/Red-team-401d6/.github/assets/108830695/2e7cadb4-b566-4dbf-8511-48b6aa6e6215">
 
 Then we cd into the ssh folder and move our ssh public key to the mounted directory
 “Cat ~/.ssh/id_rsa.pub >> /mnt/peter2/.ssh/authorized_keys”
 Then I was able to ssh in as peter
-
+<img width="526" alt="success" src="https://github.com/Red-team-401d6/.github/assets/108830695/ede83f66-6246-4042-a21b-b90879f9945e">
 
 ### Host 10.0.0.126 Process Documentation:
 
