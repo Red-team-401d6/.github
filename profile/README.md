@@ -100,16 +100,13 @@ After the hosts, ports, services, and operating systems have been identified, yo
 ### IP 10.0.0.197
 | Port  | Service          | Vulnerability                                                        | Attack Method                                                                                        |
 |-------|------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| 445   | smb | | |
-| 3389  | rdp | | |
+| 3389  | rdp | Network Level Authhentication(NLA) disable. Disabling NLA means that anyone can attempt to connect to the remote desktop without first providing valid credentials  | Brute force |
 
 ### IP 10.0.0.74
 | Port  | Service          | Vulnerability                                                        | Attack Method                                                                                        |
 |-------|------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| 135   | rcp  | | |
-| 139   | netbios | | |
-| 445   | smb | | |
-| 3389  | rdp | | |
+| 1900  | upnp | Universal Plug and Play (UPnP) protocol have been associated with several vulnerabilities in the past. | |
+| 3389  | rdp | Network Level Authhentication(NLA) disable. Disabling NLA means that anyone can attempt to connect to the remote desktop without first providing valid credentials  | Brute force |
 
 ### IP 10.0.0.126
 | Port  | Service          | Vulnerability                                                        | Attack Method                                                                                        |
