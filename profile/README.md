@@ -126,6 +126,9 @@ After running nmap scans we notice that port 3389 was open and was vulnerable.
 
 <img width="314" alt="rdeskconnect" src="https://github.com/Red-team-401d6/Supporting-files/blob/main/Screenshot%20from%202023-06-25%2023-12-04.png">
 
+We use metasploit rdp scanner to investigate further 
+
+<img alt="rdeskconnect" src="https://github.com/Red-team-401d6/Supporting-files/blob/main/Screenshot%20from%202023-06-25%2023-17-55.png">
 
 ### Host 10.0.0.82 Process Documentation
 First we noticed that ftp was open on port 21 and so was port 3389. 
@@ -137,7 +140,7 @@ With that info we know we need to run Hydra in an effort to get the log in crede
 
 Then I was able to use those creds to log into ftp on port 21
 
-<img width="244" alt="ftp-connection" src="https://github.com/Red-team-401d6/.github/assets/108830695/8e35492c-5d97-48d9-877d-8325687da6bf">
+<img width="500" alt="ftp-connection" src="https://github.com/Red-team-401d6/.github/assets/108830695/8e35492c-5d97-48d9-877d-8325687da6bf">
 
 and rdp on port 3389
 
