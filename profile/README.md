@@ -122,6 +122,8 @@ Nmap has a scripting engine (NSE) that can execute scripts for more advanced ser
 Once potential vulnerabilities have been identified, the next step would be to attempt to exploit these vulnerabilities. This might involve using tools such as Metasploit or manual techniques to exploit the identified vulnerabilities.
 
 ### Host 10.0.0.74 process Documentation
+After running nmap scans we notice that port 3389 was open and was vulnerable.
+<img width="314" alt="rdeskconnect" src="https://github.com/Red-team-401d6/Supporting-files/blob/main/Screenshot%20from%202023-06-25%2023-12-04.png">
 
 
 ### Host 10.0.0.82 Process Documentation
