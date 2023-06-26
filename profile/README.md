@@ -123,6 +123,7 @@ Once potential vulnerabilities have been identified, the next step would be to a
 
 ### Host 10.0.0.74 process Documentation
 After running nmap scans we notice that port 3389 was open and was vulnerable.
+
 <img width="314" alt="rdeskconnect" src="https://github.com/Red-team-401d6/Supporting-files/blob/main/Screenshot%20from%202023-06-25%2023-12-04.png">
 
 
